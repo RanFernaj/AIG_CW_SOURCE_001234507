@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    [Header("Components")]
     public CharacterController controller;
     public Transform groundCheck;
 
+    [Header("Ground Check")]
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
-
+    [Header("Floats")]
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
@@ -40,10 +41,13 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight* -2 * gravity);
         }
+      
 
 
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime); // Y Movement
     }
+
+   
 }
