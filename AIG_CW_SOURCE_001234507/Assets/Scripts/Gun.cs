@@ -3,11 +3,17 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public float damage = 10f;
-    public float range = 100f;
-
+    [Header("Components")]
     public Camera cam;
     public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;
+
+    [Header("Values")]
+    public float damage = 10f;
+    public float range = 100f;
+    public float bulletForce = 50f;
+
+  
 
     // Update is called once per frame
     void Update()
@@ -32,6 +38,14 @@ public class Gun : MonoBehaviour
             {
                 enemy.TakeDamage(damage);
             }
+            if(hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * bulletForce);
+            }
+
+            GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impact, 2f);
+
         }
     }
 }
