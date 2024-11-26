@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour
     public float range = 100f;
 
     public Camera cam;
+    public ParticleSystem muzzleFlash;
 
     // Update is called once per frame
     void Update()
@@ -19,11 +20,14 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
+        muzzleFlash.Play();
         RaycastHit hit;
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
-            Damage enemy = hit.transform.GetComponent<Damage>();
+
+            // Identifiying object with the Damage script
+            Damage enemy = hit.transform.GetComponent<Damage>(); 
             if(enemy != null)
             {
                 enemy.TakeDamage(damage);
