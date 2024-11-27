@@ -9,22 +9,25 @@ public class GameDirector : MonoBehaviour
     public GameObject enemy;
 
     [Header("Values")]
-    public int kills;
-    public int currentEnemies;
-    public enum Difficulties 
+    [SerializeField] private int kills;
+    [SerializeField] private int currentEnemies;
+    private enum Difficulties 
     {
         EASY, 
         MEDIUM, 
         HARD
     };
-    public Difficulties currentDifficulty;
+    [SerializeField] private Difficulties currentDifficulty;
 
     // Have different fucntions for each difficulty 
     // For each difficulty ther should be a min and max value
     // Probabilty caluclation should also occur here 
-    // When a value for a gameobject ie. Enemy or spawner 
-    // 
+    // When a value for a gameobject ie. Enemy or spawner needs to change is done incapsulation (Get/Set)
 
+    // Values that will change--> Enemy Health, Spawn rates, enemy damage,  
+    // For player deaths --> DIsable player obj, wait time, set player to respawn point, reenable player (Use coroutine)
+    // Values to be tracked --> playerkill score, player kills, player deaths
+    //https://www.youtube.com/watch?v=yhlyoQ2F-NM (singleton tutorials)
 
     // Start is called before the first frame update
     void Start()

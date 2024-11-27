@@ -5953,6 +5953,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b7cd6f464526d42af43fcafe4c5411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  kills: 0
+  currentEnemies: 0
+  currentDifficulty: 2
 --- !u!4 &1804703758
 Transform:
   m_ObjectHideFlags: 0
