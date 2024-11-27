@@ -11,12 +11,15 @@ public class GameDirector : MonoBehaviour
     [Header("Values")]
     [SerializeField] private int kills;
     [SerializeField] private int currentEnemies;
+
     private enum Difficulties 
     {
         EASY, 
         MEDIUM, 
         HARD
     };
+
+    [Header("Difficulty")]
     [SerializeField] private Difficulties currentDifficulty;
 
     // Have different fucntions for each difficulty 
@@ -39,5 +42,53 @@ public class GameDirector : MonoBehaviour
     void Update()
     {
         
+    }
+    private void FixedUpdate()
+    {
+        CheckForEnemies();
+    }
+
+    void CheckForEnemies()
+    {
+        var enemies = FindObjectsOfType<Damage>();
+        currentEnemies = enemies.Length;
+    }
+
+    public void TrackValues()
+    {
+
+    }
+
+    void UpdateDifficulty()
+    {
+        switch (currentDifficulty)
+        {
+            case Difficulties.HARD:
+                print("Hard mode");
+                break;
+            case Difficulties.MEDIUM:
+                print("Medium");
+                break;
+            case Difficulties.EASY:
+                print("Easy");
+                break;
+
+        }
+    }
+
+
+    void EasyDifficulty()
+    {
+        // Take The lower values and pick a random one
+    }
+
+    void MediumDifficulty()
+    {
+        // Take The middle(average) values and pick a random one
+    }
+
+    void HardDifficulty()
+    {
+        // Take The higher values and pick a random one
     }
 }

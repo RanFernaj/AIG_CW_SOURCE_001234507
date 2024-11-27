@@ -36,7 +36,7 @@ public class Respawn : MonoBehaviour
         player.SetActive(true);
         
         PlayerDamage damage = player.GetComponent<PlayerDamage>();
-        damage.health = 50f;
+        damage.TakeDamage(-50);
     }
 
    

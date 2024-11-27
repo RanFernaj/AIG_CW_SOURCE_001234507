@@ -9,13 +9,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
 
     [Header("Ground Check")]
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
+    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] private LayerMask groundMask;
 
     [Header("Floats")]
-    public float speed = 12f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
+    [SerializeField] private float speed = 12f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float jumpHeight = 3f;
 
     Vector3 velocity;
     bool isGrounded;

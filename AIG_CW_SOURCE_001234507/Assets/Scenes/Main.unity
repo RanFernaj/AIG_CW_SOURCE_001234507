@@ -475,7 +475,7 @@ MonoBehaviour:
   enemy: {fileID: 0}
   kills: 0
   currentEnemies: 0
-  currentDifficulty: 2
+  currentDifficulty: 1
 --- !u!4 &1804703758
 Transform:
   m_ObjectHideFlags: 0
