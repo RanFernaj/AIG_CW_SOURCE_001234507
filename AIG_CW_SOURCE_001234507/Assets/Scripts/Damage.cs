@@ -12,6 +12,7 @@ public class Damage : MonoBehaviour
         {
             GameDirector gameDirector = FindObjectOfType<GameDirector>();
             gameDirector.AddPlayerKills(1);
+            gameDirector.AddPlayerScore(100);
             Die();
         }
     }
