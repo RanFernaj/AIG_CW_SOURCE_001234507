@@ -33,7 +33,6 @@ public class GameDirector : MonoBehaviour
     // Values that will change--> Enemy Health, Spawn rates, enemy damage,  
     // For player deaths --> DIsable player obj, wait time, set player to respawn point, reenable player (Use coroutine)
     // Values to be tracked --> playerkill score(Done), player kills(done), player deaths(Done), current enemeies(done)
-    //https://www.youtube.com/watch?v=yhlyoQ2F-NM (singleton tutorials)
 
     // Start is called before the first frame update
     void Start()
