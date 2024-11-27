@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FSM : MonoBehaviour
@@ -17,25 +18,39 @@ public class FSM : MonoBehaviour
     }
 }
 
-public abstract class State
+public abstract class State 
 {
     public abstract void ExceuteLogic(EnemyStateMachine enemy);
     public abstract void ChangeState(EnemyStateMachine enemy);
+    
 
 }
 
-public class Idle : State
+public class Wander : State
 {
+    
+
     public override void ExceuteLogic(EnemyStateMachine enemy)
     {
-        // does nothing
+        //StartCoroutine(MoveRandomly(enemy));
     }
+    IEnumerator MoveRandomly(EnemyStateMachine enemy)
+    {
+        Vector3 randomDestination = Random.insideUnitSphere * enemy.wanderRange;
+        enemy.rb.velocity = new(randomDestination.x, enemy.rb.velocity.y, randomDestination.z);
+        yield return new WaitForSeconds(0.5f);
+
+    }
+
+
+
     public override void ChangeState(EnemyStateMachine enemy) 
     {
         // Change state when:
         // Enemy sees player 
     }
 }
+
 
 public class Chase : State
 {
