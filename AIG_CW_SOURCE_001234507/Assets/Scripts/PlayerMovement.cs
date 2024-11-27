@@ -41,7 +41,12 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight* -2 * gravity);
         }
-      
+        
+        if (Input.GetButtonDown("Fire2"))
+        {
+            PlayerDamage damage = gameObject.GetComponent<PlayerDamage>();
+            damage.TakeDamage(25);
+        }
 
 
         velocity.y += gravity * Time.deltaTime;

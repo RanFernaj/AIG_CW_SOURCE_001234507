@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    public Transform player;
+    public GameObject player;
     public Transform respawnPoint;
     // Start is called before the first frame update
     void Start()
@@ -19,17 +19,24 @@ public class Respawn : MonoBehaviour
         if (player != player.gameObject.activeInHierarchy)
         {
             RespawnPlayer();
+
         }
 
-        
+        //if (Input.GetButtonDown("Fire2"))
+        //{
+        //    Debug.Log("Respawn!");
+        //}
 
     }
 
     void RespawnPlayer()
     {
         
-        player.position = respawnPoint.position;
-        //player.SetActive(true);
+        player.transform.position = respawnPoint.position;
+        player.SetActive(true);
+        
+        PlayerDamage damage = player.GetComponent<PlayerDamage>();
+        damage.health = 50f;
     }
 
    
