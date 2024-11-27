@@ -7,6 +7,7 @@ public class Respawn : MonoBehaviour
 {
     public GameObject player;
     public Transform respawnPoint;
+    public GameDirector gameDirector;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class Respawn : MonoBehaviour
     {
         if (player != player.gameObject.activeInHierarchy)
         {
+            gameDirector.AddPlayerDeaths(1);
             RespawnPlayer();
 
         }
@@ -36,7 +38,8 @@ public class Respawn : MonoBehaviour
         player.SetActive(true);
         
         PlayerDamage damage = player.GetComponent<PlayerDamage>();
-        damage.TakeDamage(-50);
+        damage.TakeDamage(-50); // Setting player health back to normal
+
     }
 
    

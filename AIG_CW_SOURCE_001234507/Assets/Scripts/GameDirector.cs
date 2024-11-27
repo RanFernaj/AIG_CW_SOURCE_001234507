@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class GameDirector : MonoBehaviour
     [Header("Values")]
     [SerializeField] private int kills;
     [SerializeField] private int currentEnemies;
+    [SerializeField] private int playerDeaths;
+    [SerializeField] private int playerScore;
 
     private enum Difficulties 
     {
@@ -29,7 +32,7 @@ public class GameDirector : MonoBehaviour
 
     // Values that will change--> Enemy Health, Spawn rates, enemy damage,  
     // For player deaths --> DIsable player obj, wait time, set player to respawn point, reenable player (Use coroutine)
-    // Values to be tracked --> playerkill score, player kills, player deaths
+    // Values to be tracked --> playerkill score, player kills(done), player deaths(Done), current enemeies(done)
     //https://www.youtube.com/watch?v=yhlyoQ2F-NM (singleton tutorials)
 
     // Start is called before the first frame update
@@ -90,5 +93,17 @@ public class GameDirector : MonoBehaviour
     void HardDifficulty()
     {
         // Take The higher values and pick a random one
+    }
+
+
+    // Setters
+    public void AddPlayerDeaths(int amount)
+    {
+        playerDeaths += amount;
+    }
+    
+    public void AddPlayerKills(int amount)
+    {
+        kills += amount;
     }
 }
