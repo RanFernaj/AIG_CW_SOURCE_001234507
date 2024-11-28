@@ -37,7 +37,7 @@ public class EnemyStateMachine : MonoBehaviour
     void Update()
     {
        
-        //Debug.Log(currentState.ToString()); 
+        Debug.Log(currentState.ToString());
 
         currentState.ExceuteLogic(this);
         currentState.ChangeState(this);
@@ -46,5 +46,10 @@ public class EnemyStateMachine : MonoBehaviour
 
         
     }
-    
+
+    public void MoveRandomlyCoroutine()
+    {
+        //StartCoroutine(MoveRandomly());
+    }
+
 }

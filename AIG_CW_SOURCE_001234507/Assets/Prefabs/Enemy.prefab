@@ -319,7 +319,8 @@ MonoBehaviour:
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   walkSpeed: 2
   wanderRange: 10
+  lookRange: 10
   isGrounded: 0
