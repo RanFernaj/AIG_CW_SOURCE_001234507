@@ -18,27 +18,61 @@ public class FSM : MonoBehaviour
     }
 }
 
-public abstract class State 
+public abstract class State
 {
+    
     public abstract void ExceuteLogic(EnemyStateMachine enemy);
     public abstract void ChangeState(EnemyStateMachine enemy);
     
 
 }
+public class Idle : State
+{
+    bool foundPlayer = false;
+    public override void ExceuteLogic(EnemyStateMachine enemy)
+    {
+        // do nothing
+        //Debug.Log("IDLE :D");
+        FindPlayer(enemy);
+    }
+
+    public override void ChangeState(EnemyStateMachine enemy) 
+    {
+        // Change to 
+        // Wandering 
+        // Chasing if player is spotted
+
+    }
+
+    public void FindPlayer(EnemyStateMachine enemy)
+    {
+        
+        RaycastHit hit;
+        if(Physics.Raycast(enemy.frontFacing.position, enemy.frontFacing.forward, out hit, enemy.lookRange))
+        {
+            Debug.Log(hit.transform.name);
+        }
+        
+        //return foundPlayer;
+    }
+}
 
 public class Wander : State
 {
-    
+    bool done = false;
 
     public override void ExceuteLogic(EnemyStateMachine enemy)
     {
-        //StartCoroutine(MoveRandomly(enemy));
+        if (!done)
+        {
+            MoveRandomly(enemy);
+        }
     }
-    IEnumerator MoveRandomly(EnemyStateMachine enemy)
+    void MoveRandomly(EnemyStateMachine enemy)
     {
         Vector3 randomDestination = Random.insideUnitSphere * enemy.wanderRange;
         enemy.rb.velocity = new(randomDestination.x, enemy.rb.velocity.y, randomDestination.z);
-        yield return new WaitForSeconds(0.5f);
+        done = true;
 
     }
 
@@ -48,6 +82,11 @@ public class Wander : State
     {
         // Change state when:
         // Enemy sees player 
+        if (done) 
+        {
+            enemy.currentState = new Idle();
+        }
+
     }
 }
 

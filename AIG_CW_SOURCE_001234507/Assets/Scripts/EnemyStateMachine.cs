@@ -9,6 +9,7 @@ public class EnemyStateMachine : MonoBehaviour
     [Header("Components")]
     public Rigidbody rb;
     public Transform groundCheck;
+    public Transform frontFacing;
 
     [Header("Ground Check")]
     [SerializeField] private float groundDistance = 0.4f;
@@ -17,6 +18,7 @@ public class EnemyStateMachine : MonoBehaviour
     [Header("Floats")]
     public float walkSpeed = 2f;
     public float wanderRange = 10;
+    public float lookRange = 10;
 
     [Header("Booleans")]
     [SerializeField] private bool isGrounded;
@@ -25,13 +27,18 @@ public class EnemyStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentState = new Wander();
+        
+        currentState = new Idle();
 
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+       
+        //Debug.Log(currentState.ToString()); 
+
         currentState.ExceuteLogic(this);
         currentState.ChangeState(this);
 
@@ -39,4 +46,5 @@ public class EnemyStateMachine : MonoBehaviour
 
         
     }
+    
 }

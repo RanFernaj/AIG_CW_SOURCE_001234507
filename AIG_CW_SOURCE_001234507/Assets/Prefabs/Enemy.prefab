@@ -315,5 +315,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2658398214594408817}
   groundCheck: {fileID: 7261865193486776245}
+  frontFacing: {fileID: 3554995032603831111}
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
   walkSpeed: 2
   wanderRange: 10
+  isGrounded: 0
