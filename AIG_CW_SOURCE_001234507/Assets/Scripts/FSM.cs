@@ -21,7 +21,6 @@ public class FSM : MonoBehaviour
 public abstract class State
 {
     public bool playerFound = false;
-    public bool wandering = false;
     public abstract void ExceuteLogic(EnemyStateMachine enemy);
     public abstract void ChangeState(EnemyStateMachine enemy);
 
@@ -54,36 +53,7 @@ public abstract class State
 
 
 }
-public class Idle : State
-{
-    public override void ExceuteLogic(EnemyStateMachine enemy)
-    {
-        // do nothing
-        //Debug.Log("IDLE :D");
-        //FindPlayer(enemy);
-    }
 
-    public override void ChangeState(EnemyStateMachine enemy) 
-    {
-        // Change to 
-        // if player is spotted --> Chase
-        if (playerFound) 
-        {
-            enemy.currentState = new Chase();
-        }
-        if (!playerFound)
-        {
-            enemy.currentState = new Wander();
-        }
-        // Player hasnt been spotted --> Wander
-        
-       
-
-    }
-
-    
-    
-}
 
 public class Wander : State
 {
@@ -93,7 +63,7 @@ public class Wander : State
     {
 
         enemy.MoveRandomly();
-        //FindPlayer(enemy);
+        
     }
     //void MoveRandomly(EnemyStateMachine enemy)
     //{
@@ -108,11 +78,7 @@ public class Wander : State
     public override void ChangeState(EnemyStateMachine enemy) 
     {
         // Change state when:
-        // Enemy hasnt seen player AND finished going to the random spot --> Idle
-        if (wandering && !playerFound) 
-        {
-            enemy.currentState = new Idle();
-        }
+       
         // Enemy sees player --> Chase
         if (playerFound)
         {
@@ -132,10 +98,10 @@ public class Chase : State
     public override void ChangeState(EnemyStateMachine enemy)
     {
         // Change state when:
-        // Or when sight is lost of player -> Idle
+        // Or when sight is lost of player -> Wander
         if (!playerFound)
         {
-            enemy.currentState = new Idle();
+            enemy.currentState = new Wander();
         }
 
         // Player is close to enemy --> Attack

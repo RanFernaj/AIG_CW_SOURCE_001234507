@@ -33,7 +33,7 @@ public class EnemyStateMachine : MonoBehaviour
     void Start()
     {
         
-        currentState = new Idle();
+        currentState = new Wander();
 
        
     }
@@ -106,6 +106,11 @@ public class EnemyStateMachine : MonoBehaviour
             transform.position += frontFacing.forward * walkSpeed * Time.deltaTime;
         }
 
+    }
+
+    public bool GetIsWandering()
+    {
+        return isWandering;
     }
 
 }
