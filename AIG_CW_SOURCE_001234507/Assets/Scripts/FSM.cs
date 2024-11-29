@@ -84,16 +84,16 @@ public class Wander : State
 
     public override void ExceuteLogic(EnemyStateMachine enemy)
     {
-        
+
         enemy.MoveRandomlyCoroutine();
     }
-    void MoveRandomly(EnemyStateMachine enemy)
-    {
-        Vector3 randomDestination = Random.insideUnitSphere * enemy.wanderRange;
-        enemy.rb.velocity = new(randomDestination.x, enemy.rb.velocity.y, randomDestination.z);
-        wandering = true;
+    //void MoveRandomly(EnemyStateMachine enemy)
+    //{
+    //    Vector3 randomDestination = Random.insideUnitSphere * enemy.wanderRange;
+    //    enemy.rb.velocity = new(randomDestination.x, enemy.rb.velocity.y, randomDestination.z);
+    //    wandering = true;
 
-    }
+    //}
 
 
 

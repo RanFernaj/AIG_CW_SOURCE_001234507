@@ -22,6 +22,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     [Header("Booleans")]
     [SerializeField] private bool isGrounded;
+    private bool isWandering = false;
+    bool isWalking = false;
 
 
     // Start is called before the first frame update
@@ -47,9 +49,34 @@ public class EnemyStateMachine : MonoBehaviour
         
     }
 
+
+    IEnumerator Wander()
+    {
+        int walkTime = Random.Range(1, 3);
+        int waitTime = Random.Range(1, 4);
+
+        isWandering = true;
+
+        yield return new WaitForSeconds(waitTime);
+        isWalking = true;
+        yield return new WaitForSeconds(walkTime);
+        isWalking = false;
+
+        isWandering = false;
+    }
+
     public void MoveRandomlyCoroutine()
     {
         //StartCoroutine(MoveRandomly());
+        if (!isWandering)
+        {
+            StartCoroutine(Wander());
+        }
+        if (isWalking) 
+        {
+            transform.position += frontFacing.forward * walkSpeed * Time.deltaTime;
+        }
+
     }
 
 }
