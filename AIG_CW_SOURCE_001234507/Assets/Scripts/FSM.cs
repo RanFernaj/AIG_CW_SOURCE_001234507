@@ -46,7 +46,7 @@ public abstract class State
         else
         {
             playerFound = false;
-            Debug.Log("NOt FOUND");
+            Debug.Log("NOT FOUND");
         }
 
     }
@@ -93,7 +93,7 @@ public class Chase : State
 {
     public override void ExceuteLogic(EnemyStateMachine enemy)
     {
-        
+        enemy.ChasePlayer();
     }
     public override void ChangeState(EnemyStateMachine enemy)
     {

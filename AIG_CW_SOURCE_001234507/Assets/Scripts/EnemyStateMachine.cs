@@ -10,6 +10,7 @@ public class EnemyStateMachine : MonoBehaviour
     public Rigidbody rb;
     public Transform groundCheck;
     public Transform frontFacing;
+    public Transform playerTransform;
 
     [Header("Ground Check")]
     [SerializeField] private float groundDistance = 0.4f;
@@ -106,6 +107,12 @@ public class EnemyStateMachine : MonoBehaviour
             transform.position += frontFacing.forward * walkSpeed * Time.deltaTime;
         }
 
+    }
+
+    public void ChasePlayer()
+    {
+        //transform.rotation = Quaternion.Slerp(frontFacing.rotation, Quaternion.LookRotation(playerTransform.position - frontFacing.position), rotationSpeed * Time.deltaTime);
+        transform.position += frontFacing.forward * Time.deltaTime * walkSpeed;
     }
 
     public bool GetIsWandering()
