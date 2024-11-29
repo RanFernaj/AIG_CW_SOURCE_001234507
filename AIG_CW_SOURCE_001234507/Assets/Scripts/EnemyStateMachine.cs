@@ -46,6 +46,7 @@ public class EnemyStateMachine : MonoBehaviour
 
         currentState.ExceuteLogic(this);
         currentState.ChangeState(this);
+        currentState.FindPlayer(this);
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -57,7 +58,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         int walkTime = Random.Range(1, 3);
         int waitTime = Random.Range(1, 4);
-        int rotationTime = Random.Range(1, 3);
+        int rotationTime = Random.Range(1, 2);
         int rotateRorL = Random.Range(1, 2);
         //int rotationCompleteTime = Random.Range(1, 4);
 
@@ -67,7 +68,6 @@ public class EnemyStateMachine : MonoBehaviour
         isWalking = true;
         yield return new WaitForSeconds(walkTime);
         isWalking = false;
-        //yield return new WaitForSeconds(rotationCompleteTime);
         if(rotateRorL == 1)
         {
             rRight = true;
@@ -85,9 +85,9 @@ public class EnemyStateMachine : MonoBehaviour
         isWandering = false;
     }
 
-    public void MoveRandomlyCoroutine()
+    public void MoveRandomly()
     {
-        //StartCoroutine(MoveRandomly());
+        
         if (!isWandering)
         {
             StartCoroutine(Wander());

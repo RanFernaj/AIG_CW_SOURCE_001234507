@@ -27,7 +27,7 @@ public abstract class State
 
     public void FindPlayer(EnemyStateMachine enemy)
     {
-
+        
         RaycastHit hit;
         if (Physics.Raycast(enemy.frontFacing.position, enemy.frontFacing.forward, out hit, enemy.lookRange))
         {
@@ -35,12 +35,19 @@ public abstract class State
             if(hit.transform.tag == "Player")
             {
                 playerFound = true;
+                Debug.Log("FOUND");
             }
-            if(hit.transform.tag == "Untagged" || hit.transform.tag != "Player" )
-            {
-                playerFound = false;
-            }
-            
+            //if(hit.transform.tag == "Untagged" || hit.transform.tag != "Player" )
+            //{
+               
+            //    Debug.Log("NOt FOUND");
+            //}
+
+        }
+        else
+        {
+            playerFound = false;
+            Debug.Log("NOt FOUND");
         }
 
     }
@@ -53,7 +60,7 @@ public class Idle : State
     {
         // do nothing
         //Debug.Log("IDLE :D");
-        FindPlayer(enemy);
+        //FindPlayer(enemy);
     }
 
     public override void ChangeState(EnemyStateMachine enemy) 
@@ -85,7 +92,8 @@ public class Wander : State
     public override void ExceuteLogic(EnemyStateMachine enemy)
     {
 
-        enemy.MoveRandomlyCoroutine();
+        enemy.MoveRandomly();
+        //FindPlayer(enemy);
     }
     //void MoveRandomly(EnemyStateMachine enemy)
     //{
