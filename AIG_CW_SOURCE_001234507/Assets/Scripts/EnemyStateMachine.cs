@@ -34,7 +34,7 @@ public class EnemyStateMachine : MonoBehaviour
     private bool rRight = false;
     private bool rLeft = false;
     private bool attacking = false;
-    [SerializeField] private float attackTime = 1f;
+    [SerializeField] private float attackTime = 1.5f;
     private bool isNearPlayer = false;
 
 
