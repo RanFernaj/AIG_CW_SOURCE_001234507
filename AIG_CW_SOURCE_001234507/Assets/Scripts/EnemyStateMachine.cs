@@ -11,10 +11,15 @@ public class EnemyStateMachine : MonoBehaviour
     public Transform groundCheck;
     public Transform frontFacing;
     public Transform playerTransform;
+    public GameObject attackSphere;
 
     [Header("Ground Check")]
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
+
+    [Header("Player Check")]
+    [SerializeField] private float playerCheckDistance = 1f;
+    [SerializeField] private LayerMask playerCheckMask;
 
     [Header("Floats")]
     public float walkSpeed = 2f;
@@ -28,6 +33,9 @@ public class EnemyStateMachine : MonoBehaviour
     private bool isWalking = false;
     private bool rRight = false;
     private bool rLeft = false;
+    private bool attacking = false;
+    [SerializeField] private float attackTime = 1f;
+    private bool isNearPlayer = false;
 
 
     // Start is called before the first frame update
@@ -50,7 +58,7 @@ public class EnemyStateMachine : MonoBehaviour
         currentState.FindPlayer(this);
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
+        isNearPlayer = Physics.CheckSphere(attackSphere.transform.position, playerCheckDistance, playerCheckMask);
         
     }
 
@@ -114,10 +122,33 @@ public class EnemyStateMachine : MonoBehaviour
         //transform.rotation = Quaternion.Slerp(frontFacing.rotation, Quaternion.LookRotation(playerTransform.position - frontFacing.position), rotationSpeed * Time.deltaTime);
         transform.position += frontFacing.forward * Time.deltaTime * walkSpeed;
     }
+    IEnumerator AttackPlayer()
+    {
+        attacking = true;
+        yield return new WaitForSeconds(attackTime);
+        attacking = false;  
+    }
 
+    public void Attack()
+    {
+        if (attacking) 
+        {
+            attackSphere.SetActive(true);
+        }
+        if (!attacking)
+        {
+            attackSphere.SetActive(false);
+            StartCoroutine (AttackPlayer());
+        }
+    }
     public bool GetIsWandering()
     {
         return isWandering;
+    }
+
+    public bool GetIsNearPlayer()
+    {
+        return isNearPlayer;
     }
 
 }

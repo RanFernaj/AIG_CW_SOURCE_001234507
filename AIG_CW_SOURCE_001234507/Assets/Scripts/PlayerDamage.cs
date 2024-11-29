@@ -12,6 +12,7 @@ public class PlayerDamage : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
+            health = 0;
             Die();
         }
     }

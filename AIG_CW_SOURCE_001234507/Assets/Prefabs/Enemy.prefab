@@ -318,15 +318,21 @@ MonoBehaviour:
   groundCheck: {fileID: 7261865193486776245}
   frontFacing: {fileID: 3554995032603831111}
   playerTransform: {fileID: 8751713447061441132, guid: f2fcd82d3d7b69343843f9ddece99a81, type: 3}
+  attackSphere: {fileID: 6571217487658865772}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  playerCheckDistance: 1
+  playerCheckMask:
+    serializedVersion: 2
+    m_Bits: 256
   walkSpeed: 2
   wanderRange: 10
   rotationSpeed: 150
   lookRange: 10
   isGrounded: 0
+  attackTime: 1
 --- !u!1 &6571217487658865772
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 922847031796022613}
   - component: {fileID: 797385733106723317}
+  - component: {fileID: 7690408829107392162}
   m_Layer: 0
   m_Name: AttackRange
   m_TagString: Untagged
@@ -380,3 +387,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7690408829107392162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6571217487658865772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b5eeceb4eb3bb4e8c47725f26c990d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6526292475023033804}
   - component: {fileID: 5309845137254011914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5553284468423121761}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 5934706690633046110}
   - component: {fileID: 8563195241647106095}
   - component: {fileID: 6599658058051823328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: First Person Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 3776820753413341952}
   - component: {fileID: 1386118155162917176}
   - component: {fileID: 4905830590504503279}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 1141994338209193352}
   - component: {fileID: 5286037666522092446}
   - component: {fileID: 41554750971455316}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 889652804724501400}
   - component: {fileID: 6874831222453369212}
   - component: {fileID: 4683024987711030662}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MuzzleFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5309,7 +5309,7 @@ GameObject:
   - component: {fileID: 1600092341545548185}
   - component: {fileID: 1054677837164425684}
   - component: {fileID: 2265996037807928549}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

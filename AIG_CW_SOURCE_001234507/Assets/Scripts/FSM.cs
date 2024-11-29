@@ -103,6 +103,10 @@ public class Chase : State
         {
             enemy.currentState = new Wander();
         }
+        if (enemy.GetIsNearPlayer()) 
+        {
+            enemy.currentState = new Attack();
+        }
 
         // Player is close to enemy --> Attack
     }
@@ -112,12 +116,20 @@ public class Attack : State
 {
     public override void ExceuteLogic(EnemyStateMachine enemy)
     {
-        
+        enemy.Attack();
     }
     public override void ChangeState(EnemyStateMachine enemy)
     {
         // Change state when:
         // Player Dies --> to Idle
+        if (!playerFound) 
+        {
+            enemy.currentState = new Wander();
+        }
         // Player goes out of range and can see the player --> to chase 
+        if (!enemy.GetIsNearPlayer()) 
+        {
+            enemy.currentState = new Chase();
+        }
     }
 }
