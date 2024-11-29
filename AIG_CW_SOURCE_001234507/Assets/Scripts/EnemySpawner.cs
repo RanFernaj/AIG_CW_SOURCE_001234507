@@ -24,6 +24,8 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
+        EnemyStateMachine enemy = enemyPrefab.GetComponent<EnemyStateMachine>();
+        enemy.walkSpeed = Random.Range(20, 30);
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(spawnRate);
         StartCoroutine(SpawnEnemies());

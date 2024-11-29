@@ -16,7 +16,9 @@ public class GameDirector : MonoBehaviour
     [SerializeField] private int playerDeaths;
     [SerializeField] private int playerScore;
 
-    private enum Difficulties 
+
+
+    public enum Difficulties 
     {
         EASY, 
         MEDIUM, 
@@ -24,7 +26,7 @@ public class GameDirector : MonoBehaviour
     };
 
     [Header("Difficulty")]
-    [SerializeField] private Difficulties currentDifficulty;
+    public Difficulties currentDifficulty;
 
     // Have different fucntions for each difficulty 
     // For each difficulty ther should be a min and max value
@@ -44,10 +46,11 @@ public class GameDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        TrackValues();
     }
     private void FixedUpdate()
     {
+        UpdateDifficulty();
         CheckForEnemies();
     }
 
@@ -59,7 +62,10 @@ public class GameDirector : MonoBehaviour
 
     public void TrackValues()
     {
-
+        if(kills > 0)
+        {
+            currentDifficulty = Difficulties.HARD;
+        }
     }
 
     void UpdateDifficulty()

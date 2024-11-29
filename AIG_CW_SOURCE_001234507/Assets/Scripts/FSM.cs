@@ -21,7 +21,7 @@ public class FSM : MonoBehaviour
 public abstract class State
 {
     public bool playerFound = false;
-    public Transform player;
+   
     public abstract void ExceuteLogic(EnemyStateMachine enemy);
     public abstract void ChangeState(EnemyStateMachine enemy);
 
@@ -32,30 +32,21 @@ public abstract class State
         if (Physics.Raycast(enemy.frontFacing.position, enemy.frontFacing.forward, out hit, enemy.lookRange))
         {
             //Debug.Log(hit.transform.name);
-            //if(hit.transform.tag == "Player")
-            //{
-                
-            //}
-
-            PlayerDamage playerdamage = hit.transform.GetComponent<PlayerDamage>();
-            if (playerdamage != null)
-            {
-                player = hit.transform.GetComponent<Transform>();
+            if (hit.transform.tag == "Player")
+            { 
+  
                 playerFound = true;
-                Debug.Log("FOUND");
+                //Debug.Log("FOUND");
+                
             }
 
-            //if(hit.transform.tag == "Untagged" || hit.transform.tag != "Player" )
-            //{
-
-            //    Debug.Log("NOt FOUND");
-            //}
+            
 
         }
         else
         {
             playerFound = false;
-            Debug.Log("NOT FOUND");
+            //Debug.Log("NOT FOUND");
         }
 
     }
@@ -87,6 +78,7 @@ public class Wander : State
 
     public override void ChangeState(EnemyStateMachine enemy) 
     {
+        
         // Change state when:
        
         // Enemy sees player --> Chase
@@ -94,6 +86,13 @@ public class Wander : State
         {
             enemy.currentState = new Chase();
         }
+
+        // Change to perma chase when on Hard diff
+
+        //if(enemy.gameDirector.currentDifficulty == GameDirector.Difficulties.HARD)
+        //{
+        //    enemy.currentState = new Chase();
+        //}
 
     }
 }
@@ -103,7 +102,7 @@ public class Chase : State
 {
     public override void ExceuteLogic(EnemyStateMachine enemy)
     {
-        enemy.ChasePlayer(player);
+        enemy.ChasePlayer();
     }
     public override void ChangeState(EnemyStateMachine enemy)
     {

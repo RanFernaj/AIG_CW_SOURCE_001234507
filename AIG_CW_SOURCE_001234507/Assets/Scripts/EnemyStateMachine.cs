@@ -14,6 +14,8 @@ public class EnemyStateMachine : MonoBehaviour
     public Transform playerTransform;
     public GameObject attackSphere;
     public PlayerDamage target;
+    public GameObject targetGO;
+    public GameDirector gameDirector;
 
     [Header("Ground Check")]
     [SerializeField] private float groundDistance = 0.4f;
@@ -53,7 +55,8 @@ public class EnemyStateMachine : MonoBehaviour
     void Update()
     {
        
-        Debug.Log(currentState.ToString());
+        //Debug.Log(currentState.ToString());
+        gameDirector = FindObjectOfType<GameDirector>();
 
         currentState.ExceuteLogic(this);
         currentState.ChangeState(this);
@@ -119,11 +122,12 @@ public class EnemyStateMachine : MonoBehaviour
 
     }
 
-    public void ChasePlayer(Transform target)
+    public void ChasePlayer()
     {
         //transform.rotation = Quaternion.Slerp(frontFacing.rotation, Quaternion.LookRotation(playerTransform.position - frontFacing.position), rotationSpeed * Time.deltaTime);
         //transform.position += frontFacing.forward * Time.deltaTime * walkSpeed;
-        var heading = target.position - transform.position;
+        targetGO = GameObject.FindGameObjectWithTag("Player");
+        var heading = targetGO.transform.position - transform.position;
         var distance = heading.magnitude;
         var direction = heading/distance;
 
@@ -132,17 +136,6 @@ public class EnemyStateMachine : MonoBehaviour
         transform.forward = move;
     }
 
-    public void InstantChase()
-    {
-        target = FindObjectOfType<PlayerDamage>();
-        var heading = target.transform.position - transform.position;
-        var distance = heading.magnitude;
-        var direction = heading / distance;
-
-        Vector3 move = new Vector3(direction.x, 0, direction.z) * walkSpeed;
-        rb.velocity = move;
-        transform.forward = move;
-    }
     IEnumerator AttackPlayer()
     {
         attacking = true;
