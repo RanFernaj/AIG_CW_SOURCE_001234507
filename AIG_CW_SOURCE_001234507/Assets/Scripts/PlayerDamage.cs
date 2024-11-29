@@ -22,4 +22,9 @@ public class PlayerDamage : MonoBehaviour
         gameObject.SetActive(false);
         
     }
+
+    public float GetHealth()
+    {
+        return health;
+    }
 }

@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameDirector : MonoBehaviour
 {
@@ -109,5 +110,19 @@ public class GameDirector : MonoBehaviour
     public void AddPlayerScore(int amount)
     {
         playerScore += amount;
+    }
+
+    public int GetPlayerKill()
+    {
+        return kills;
+    }
+
+    public int GetPlayerDeaths()
+    {
+        return playerDeaths;
+    }
+    public int GetPlayerScore()
+    {
+        return playerScore;
     }
 }
