@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyStateMachine : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyStateMachine : MonoBehaviour
     public Transform frontFacing;
     public Transform playerTransform;
     public GameObject attackSphere;
+    public PlayerDamage target;
 
     [Header("Ground Check")]
     [SerializeField] private float groundDistance = 0.4f;
@@ -117,10 +119,29 @@ public class EnemyStateMachine : MonoBehaviour
 
     }
 
-    public void ChasePlayer()
+    public void ChasePlayer(Transform target)
     {
         //transform.rotation = Quaternion.Slerp(frontFacing.rotation, Quaternion.LookRotation(playerTransform.position - frontFacing.position), rotationSpeed * Time.deltaTime);
-        transform.position += frontFacing.forward * Time.deltaTime * walkSpeed;
+        //transform.position += frontFacing.forward * Time.deltaTime * walkSpeed;
+        var heading = target.position - transform.position;
+        var distance = heading.magnitude;
+        var direction = heading/distance;
+
+        Vector3 move = new Vector3(direction.x, 0, direction.z) * walkSpeed;
+        rb.velocity = move;
+        transform.forward = move;
+    }
+
+    public void InstantChase()
+    {
+        target = FindObjectOfType<PlayerDamage>();
+        var heading = target.transform.position - transform.position;
+        var distance = heading.magnitude;
+        var direction = heading / distance;
+
+        Vector3 move = new Vector3(direction.x, 0, direction.z) * walkSpeed;
+        rb.velocity = move;
+        transform.forward = move;
     }
     IEnumerator AttackPlayer()
     {

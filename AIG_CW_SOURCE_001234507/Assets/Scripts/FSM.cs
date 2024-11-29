@@ -21,6 +21,7 @@ public class FSM : MonoBehaviour
 public abstract class State
 {
     public bool playerFound = false;
+    public Transform player;
     public abstract void ExceuteLogic(EnemyStateMachine enemy);
     public abstract void ChangeState(EnemyStateMachine enemy);
 
@@ -31,14 +32,22 @@ public abstract class State
         if (Physics.Raycast(enemy.frontFacing.position, enemy.frontFacing.forward, out hit, enemy.lookRange))
         {
             //Debug.Log(hit.transform.name);
-            if(hit.transform.tag == "Player")
+            //if(hit.transform.tag == "Player")
+            //{
+                
+            //}
+
+            PlayerDamage playerdamage = hit.transform.GetComponent<PlayerDamage>();
+            if (playerdamage != null)
             {
+                player = hit.transform.GetComponent<Transform>();
                 playerFound = true;
                 Debug.Log("FOUND");
             }
+
             //if(hit.transform.tag == "Untagged" || hit.transform.tag != "Player" )
             //{
-               
+
             //    Debug.Log("NOt FOUND");
             //}
 
@@ -63,7 +72,8 @@ public class Wander : State
     {
 
         enemy.MoveRandomly();
-        
+        //enemy.InstantChase();
+
     }
     //void MoveRandomly(EnemyStateMachine enemy)
     //{
@@ -93,7 +103,7 @@ public class Chase : State
 {
     public override void ExceuteLogic(EnemyStateMachine enemy)
     {
-        enemy.ChasePlayer();
+        enemy.ChasePlayer(player);
     }
     public override void ChangeState(EnemyStateMachine enemy)
     {
