@@ -131,7 +131,7 @@ public class EnemyStateMachine : MonoBehaviour
         var distance = heading.magnitude;
         var direction = heading/distance;
 
-        Vector3 move = new Vector3(direction.x, 0, direction.z) * walkSpeed;
+        Vector3 move = new Vector3(direction.x * walkSpeed, rb.velocity.y, direction.z * walkSpeed);
         rb.velocity = move;
         transform.forward = move;
     }

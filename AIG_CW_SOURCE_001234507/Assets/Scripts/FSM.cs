@@ -89,10 +89,10 @@ public class Wander : State
 
         // Change to perma chase when on Hard diff
 
-        //if(enemy.gameDirector.currentDifficulty == GameDirector.Difficulties.HARD)
-        //{
-        //    enemy.currentState = new Chase();
-        //}
+        if (enemy.gameDirector.currentDifficulty == GameDirector.Difficulties.HARD)
+        {
+            enemy.currentState = new Chase();
+        }
 
     }
 }
