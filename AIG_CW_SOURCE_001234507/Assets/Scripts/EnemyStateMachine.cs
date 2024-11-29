@@ -126,6 +126,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         attacking = true;
         yield return new WaitForSeconds(attackTime);
+        attackSphere.SetActive(false);
         attacking = false;  
     }
 
@@ -135,9 +136,9 @@ public class EnemyStateMachine : MonoBehaviour
         {
             attackSphere.SetActive(true);
         }
-        if (!attacking)
+        else
         {
-            attackSphere.SetActive(false);
+            
             StartCoroutine (AttackPlayer());
         }
     }
