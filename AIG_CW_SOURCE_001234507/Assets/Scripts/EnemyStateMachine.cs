@@ -18,12 +18,15 @@ public class EnemyStateMachine : MonoBehaviour
     [Header("Floats")]
     public float walkSpeed = 2f;
     public float wanderRange = 10;
+    public float rotationSpeed = 150f;
     public float lookRange = 10;
 
     [Header("Booleans")]
     [SerializeField] private bool isGrounded;
     private bool isWandering = false;
-    bool isWalking = false;
+    private bool isWalking = false;
+    private bool rRight = false;
+    private bool rLeft = false;
 
 
     // Start is called before the first frame update
@@ -54,6 +57,9 @@ public class EnemyStateMachine : MonoBehaviour
     {
         int walkTime = Random.Range(1, 3);
         int waitTime = Random.Range(1, 4);
+        int rotationTime = Random.Range(1, 3);
+        int rotateRorL = Random.Range(1, 2);
+        //int rotationCompleteTime = Random.Range(1, 4);
 
         isWandering = true;
 
@@ -61,6 +67,20 @@ public class EnemyStateMachine : MonoBehaviour
         isWalking = true;
         yield return new WaitForSeconds(walkTime);
         isWalking = false;
+        //yield return new WaitForSeconds(rotationCompleteTime);
+        if(rotateRorL == 1)
+        {
+            rRight = true;
+            yield return new WaitForSeconds(rotationTime);
+            rRight = false;
+        }
+        if (rotateRorL == 2)
+        {
+            rLeft = true;
+            yield return new WaitForSeconds(rotationTime);
+            rLeft = false;
+        }
+
 
         isWandering = false;
     }
@@ -71,6 +91,15 @@ public class EnemyStateMachine : MonoBehaviour
         if (!isWandering)
         {
             StartCoroutine(Wander());
+        }
+        if (rLeft) 
+        {
+            transform.Rotate(transform.up * Time.deltaTime * -rotationSpeed);
+
+        }
+        if (rRight) 
+        {
+            transform.Rotate(transform.up * Time.deltaTime * rotationSpeed);
         }
         if (isWalking) 
         {
