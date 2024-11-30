@@ -1556,7 +1556,7 @@ MonoBehaviour:
   hKills: 20
   hPlayerDeaths: 2
   hPlayerScore: 1000
-  currentDifficulty: 0
+  currentDifficulty: 1
 --- !u!4 &1804703758
 Transform:
   m_ObjectHideFlags: 0

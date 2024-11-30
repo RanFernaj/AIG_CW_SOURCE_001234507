@@ -15,5 +15,9 @@ public class Death : MonoBehaviour
                 damage.TakeDamage(10000);
             }
         }
+        if (other.tag == "Enemy")
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

@@ -69,6 +69,12 @@ public class GameDirector : MonoBehaviour
     void Update()
     {
         TrackValues();
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            playerDeaths += 1;
+        }
+
     }
     private void FixedUpdate()
     {
@@ -85,7 +91,7 @@ public class GameDirector : MonoBehaviour
     public void TrackValues()
     {
 
-        if (playerDeaths > ePlayerDeaths)
+        if (playerDeaths % ePlayerDeaths == 0) // for every 20 deaths 
         {
             currentDifficulty = Difficulties.EASY;
         }
