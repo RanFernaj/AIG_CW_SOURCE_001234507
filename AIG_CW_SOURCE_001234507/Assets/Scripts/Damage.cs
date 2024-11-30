@@ -4,6 +4,7 @@ public class Damage : MonoBehaviour
 {
     public float health = 50f;
     //public GameDirector gameDirector;
+    [SerializeField] int pointWorth;
 
     public void TakeDamage(float amount) 
     {
@@ -12,7 +13,7 @@ public class Damage : MonoBehaviour
         {
             GameDirector gameDirector = FindObjectOfType<GameDirector>();
             gameDirector.AddPlayerKills(1);
-            gameDirector.AddPlayerScore(100);
+            gameDirector.AddPlayerScore(pointWorth);
             Die();
         }
     }

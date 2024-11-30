@@ -53,8 +53,8 @@ public class EnemyStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentState = new Wander();
 
-        
         targetGO = GameObject.FindGameObjectWithTag("Player");
         gameDirector = FindObjectOfType<GameDirector>();
 
@@ -64,6 +64,7 @@ public class EnemyStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         CheckEnemyType();
         //Debug.Log(currentState.ToString());
 
@@ -80,14 +81,7 @@ public class EnemyStateMachine : MonoBehaviour
     void CheckEnemyType()
     {
 
-        if (enemyType == EnemyType.EASY)
-        {
-            currentState = new Wander();
-        }
-        if (enemyType == EnemyType.MEDUIM)
-        {
-            currentState = new Wander();
-        }
+       
         if (enemyType == EnemyType.HARD)
         {
             currentState = new Chase();

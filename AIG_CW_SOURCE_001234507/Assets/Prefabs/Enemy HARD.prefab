@@ -5155,7 +5155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cf9bc633692b445a24b1dfead3c7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 100
+  pointWorth: 250
 --- !u!114 &4184795451095047638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5270,5 +5271,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b5eeceb4eb3bb4e8c47725f26c990d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 25
   damageParticle: {fileID: 2772314663383302876}

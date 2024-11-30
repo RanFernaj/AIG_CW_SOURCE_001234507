@@ -15,7 +15,7 @@ public class EnemyAttack : MonoBehaviour
             PlayerDamage playerDamage = other.transform.GetComponent<PlayerDamage>();
             if (playerDamage != null)
             {
-                playerDamage.TakeDamage(15);
+                playerDamage.TakeDamage(damage);
             }
 
         }
