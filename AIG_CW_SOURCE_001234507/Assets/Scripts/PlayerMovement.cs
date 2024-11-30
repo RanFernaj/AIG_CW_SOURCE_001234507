@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -41,7 +42,18 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight* -2 * gravity);
         }
-        
+
+        if (Input.GetButtonDown("Fire3"))
+        {
+            var enemies = FindObjectsOfType<Damage>();
+            foreach (var item in enemies)
+            {
+                item.TakeDamage(999);
+            }
+
+        }
+
+
         //if (Input.GetButtonDown("Fire2"))
         //{
         //    PlayerDamage damage = gameObject.GetComponent<PlayerDamage>();

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -13,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnEnemies());
+        //StartCoroutine(SpawnEnemies());
     }
 
     // Update is called once per frame
@@ -35,6 +34,10 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemies());
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(SpawnEnemies());
+    }
 
     public void SetSpawnRate(float rate)
     {

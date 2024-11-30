@@ -20,8 +20,12 @@ public class GameDirector : MonoBehaviour
     [Header("Values")]
     [SerializeField] private int kills;
     [SerializeField] private int currentEnemies;
-    [SerializeField] private int playerDeaths;
-    [SerializeField] private int playerScore;
+    [SerializeField] private int currentPlayerDeaths;
+    [SerializeField] private int currentPlayerScore;
+
+    [SerializeField] private int previousPlayerDeaths;
+    [SerializeField] private int previousPlayerScore;
+    [SerializeField] private int previousKills;
 
     [Header("Threshold to Change to Easy")]
     [SerializeField] private int ePlayerDeaths;
@@ -63,6 +67,9 @@ public class GameDirector : MonoBehaviour
         SpawnerE = easySpawner.GetComponent<EnemySpawner>();
         SpawnerM = mediumSpawner.GetComponent<EnemySpawner>();
         SpawnerH = hardSpawner.GetComponent<EnemySpawner>();
+        previousPlayerDeaths = currentPlayerDeaths;
+        previousKills = kills;
+        previousPlayerScore = currentPlayerScore;
     }
 
     // Update is called once per frame
@@ -72,7 +79,7 @@ public class GameDirector : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2"))
         {
-            playerDeaths += 1;
+            currentPlayerDeaths += 1;
         }
 
     }
@@ -91,18 +98,56 @@ public class GameDirector : MonoBehaviour
     public void TrackValues()
     {
 
-        if (playerDeaths % ePlayerDeaths == 0) // for every 20 deaths 
+        if (currentPlayerDeaths - previousPlayerDeaths >= ePlayerDeaths ) // for every 10 deaths 
         {
             currentDifficulty = Difficulties.EASY;
+            previousPlayerDeaths = currentPlayerDeaths;
         }
-        if (kills > mKills && playerDeaths < mPlayerDeaths || playerScore > mPlayerScore)
+        //if (currentDifficulty == Difficulties.EASY && kills - previousKills >= mKills) 
+        //{
+        //    currentDifficulty = Difficulties.MEDIUM;
+        //    previousKills = kills;
+        //}
+
+        switch (currentDifficulty)
         {
-            currentDifficulty |= Difficulties.MEDIUM;
+            case Difficulties.HARD:
+                if (currentPlayerDeaths - previousPlayerDeaths >= mPlayerDeaths)
+                {
+                    currentDifficulty = Difficulties.MEDIUM;
+                    previousKills = kills;
+                }
+                break;
+            case Difficulties.MEDIUM:
+                if (currentPlayerDeaths - previousPlayerDeaths >= ePlayerDeaths - 3) 
+                {
+                    currentDifficulty = Difficulties.EASY;
+                    previousPlayerDeaths = currentPlayerDeaths;
+                }
+                break;
+            case Difficulties.EASY:
+                if (kills - previousKills >= mKills)
+                {
+                    currentDifficulty = Difficulties.MEDIUM;
+                    previousKills = kills;
+                }
+                break;
         }
-        if (kills > hKills && playerDeaths < hPlayerDeaths || playerScore > hPlayerScore)
+        
+
+        if (kills - previousKills >= hKills  || currentPlayerScore - previousPlayerScore >= hPlayerScore)
         {
             currentDifficulty = Difficulties.HARD;
+            previousKills = hKills;
+            previousPlayerScore = currentPlayerScore;
         }
+        
+        // For ever 10 kills and for every 5 deaths 
+        //if (currentDifficulty == Difficulties.HARD && currentPlayerDeaths - previousPlayerDeaths >= mPlayerDeaths )
+        //{
+        //    currentDifficulty |= Difficulties.MEDIUM;
+        //    previousKills = kills;
+        //}
 
     }
 
@@ -141,8 +186,8 @@ public class GameDirector : MonoBehaviour
         // lower spawn rate for easy
 
         SpawnerE.SetSpawnRate(5);
+        SpawnerE.SetSpawnRate(2);
 
-        
 
         easySpawner.SetActive(true);
         mediumSpawner.SetActive(true);
@@ -154,8 +199,8 @@ public class GameDirector : MonoBehaviour
         // Change spawnrates 
         // lower spawnrates for easy and medium
         SpawnerE.SetSpawnRate(6);
-        SpawnerM.SetSpawnRate(5);
-        SpawnerH.SetSpawnRate(5);
+        SpawnerM.SetSpawnRate(4);
+        SpawnerH.SetSpawnRate(2);
         easySpawner.SetActive(true);
         mediumSpawner.SetActive(true);
         hardSpawner.SetActive(true);
@@ -165,7 +210,7 @@ public class GameDirector : MonoBehaviour
     // Setters
     public void AddPlayerDeaths(int amount)
     {
-        playerDeaths += amount;
+        currentPlayerDeaths += amount;
     }
     
     public void AddPlayerKills(int amount)
@@ -175,7 +220,7 @@ public class GameDirector : MonoBehaviour
     
     public void AddPlayerScore(int amount)
     {
-        playerScore += amount;
+        currentPlayerScore += amount;
     }
 
     public int GetPlayerKill()
@@ -185,10 +230,10 @@ public class GameDirector : MonoBehaviour
 
     public int GetPlayerDeaths()
     {
-        return playerDeaths;
+        return currentPlayerDeaths;
     }
     public int GetPlayerScore()
     {
-        return playerScore;
+        return currentPlayerScore;
     }
 }

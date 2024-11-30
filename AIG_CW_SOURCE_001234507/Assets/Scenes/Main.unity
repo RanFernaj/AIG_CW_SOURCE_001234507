@@ -1547,16 +1547,19 @@ MonoBehaviour:
   hardSpawner: {fileID: 1462991364}
   kills: 0
   currentEnemies: 0
-  playerDeaths: 0
-  playerScore: 0
-  ePlayerDeaths: 20
+  currentPlayerDeaths: 0
+  currentPlayerScore: 0
+  previousPlayerDeaths: 0
+  previousPlayerScore: 0
+  previousKills: 0
+  ePlayerDeaths: 10
   mKills: 10
   mPlayerDeaths: 5
   mPlayerScore: 550
   hKills: 20
   hPlayerDeaths: 2
-  hPlayerScore: 1000
-  currentDifficulty: 1
+  hPlayerScore: 2000
+  currentDifficulty: 0
 --- !u!4 &1804703758
 Transform:
   m_ObjectHideFlags: 0
