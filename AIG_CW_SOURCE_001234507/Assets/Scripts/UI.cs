@@ -15,6 +15,7 @@ public class UI : MonoBehaviour
     public TextMeshProUGUI killsText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI deathsText;
+    public TextMeshProUGUI currentDiffText;
 
 
     // Update is called once per frame
@@ -24,5 +25,8 @@ public class UI : MonoBehaviour
         killsText.text = "Kills: " + gameDirector.GetPlayerKill().ToString();
         scoreText.text = "Score: " + gameDirector.GetPlayerScore().ToString();
         deathsText.text = "Deaths: " + gameDirector.GetPlayerDeaths().ToString();
+
+
+       currentDiffText.text = "Difficulty: "+gameDirector.currentDifficulty.ToString();
     }
 }
