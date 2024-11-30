@@ -8,7 +8,7 @@ public class GameDirector : MonoBehaviour
 {
     [Header("Game Object References")]
     public GameObject player;
-    public GameObject enemy;
+    //public GameObject enemy;
     public GameObject easySpawner;
     public GameObject mediumSpawner;
     public GameObject hardSpawner;
@@ -23,7 +23,20 @@ public class GameDirector : MonoBehaviour
     [SerializeField] private int playerDeaths;
     [SerializeField] private int playerScore;
 
+    [Header("Threshold to Change to Easy")]
+    [SerializeField] private int ePlayerDeaths;
 
+
+
+    [Header("Threshold to Change to Medium")]
+    [SerializeField] private int mKills;
+    [SerializeField] private int mPlayerDeaths;
+    [SerializeField] private int mPlayerScore;
+
+    [Header("Threshold to change to Hard")]
+    [SerializeField] private int hKills;
+    [SerializeField] private int hPlayerDeaths;
+    [SerializeField] private int hPlayerScore;
 
     public enum Difficulties 
     {
@@ -71,10 +84,20 @@ public class GameDirector : MonoBehaviour
 
     public void TrackValues()
     {
-        if(kills > 0)
+
+        if (playerDeaths > ePlayerDeaths)
+        {
+            currentDifficulty = Difficulties.EASY;
+        }
+        if (kills > mKills && playerDeaths < mPlayerDeaths || playerScore > mPlayerScore)
+        {
+            currentDifficulty |= Difficulties.MEDIUM;
+        }
+        if (kills > hKills && playerDeaths < hPlayerDeaths || playerScore > hPlayerScore)
         {
             currentDifficulty = Difficulties.HARD;
         }
+
     }
 
     void UpdateDifficulty()

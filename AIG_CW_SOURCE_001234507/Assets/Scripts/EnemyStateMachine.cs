@@ -11,9 +11,9 @@ public class EnemyStateMachine : MonoBehaviour
     public Rigidbody rb;
     public Transform groundCheck;
     public Transform frontFacing;
-    public Transform playerTransform;
+    //public Transform playerTransform;
     public GameObject attackSphere;
-    public PlayerDamage target;
+    //public PlayerDamage target;
     public GameObject targetGO;
     public GameDirector gameDirector;
 
@@ -27,7 +27,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     [Header("Floats")]
     public float walkSpeed = 2f;
-    public float wanderRange = 10;
+    //public float wanderRange = 10;
     public float rotationSpeed = 150f;
     public float lookRange = 10;
 

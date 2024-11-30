@@ -5200,7 +5200,7 @@ MonoBehaviour:
   walkSpeed: 2
   wanderRange: 10
   rotationSpeed: 150
-  lookRange: 10
+  lookRange: 20
   isGrounded: 0
   attackTime: 1.5
   enemyType: 1
