@@ -5019,7 +5019,7 @@ GameObject:
   - component: {fileID: 4184795451095047638}
   - component: {fileID: 7211768357622447898}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy HARD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5186,6 +5186,8 @@ MonoBehaviour:
   playerTransform: {fileID: 8751713447061441132, guid: f2fcd82d3d7b69343843f9ddece99a81, type: 3}
   attackSphere: {fileID: 6571217487658865772}
   target: {fileID: 0}
+  targetGO: {fileID: 0}
+  gameDirector: {fileID: 0}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
@@ -5199,7 +5201,8 @@ MonoBehaviour:
   rotationSpeed: 150
   lookRange: 10
   isGrounded: 0
-  attackTime: 1
+  attackTime: 0.5
+  enemyType: 2
 --- !u!1 &6571217487658865772
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,4 +34,10 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(spawnRate);
         StartCoroutine(SpawnEnemies());
     }
+
+
+    public void SetSpawnRate(float rate)
+    {
+        spawnRate = rate;
+    }
 }

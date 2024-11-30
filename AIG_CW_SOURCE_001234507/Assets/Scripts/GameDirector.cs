@@ -9,6 +9,13 @@ public class GameDirector : MonoBehaviour
     [Header("Game Object References")]
     public GameObject player;
     public GameObject enemy;
+    public GameObject easySpawner;
+    public GameObject mediumSpawner;
+    public GameObject hardSpawner;
+
+    private EnemySpawner SpawnerE;
+    private EnemySpawner SpawnerM;
+    private EnemySpawner SpawnerH;
 
     [Header("Values")]
     [SerializeField] private int kills;
@@ -40,7 +47,9 @@ public class GameDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SpawnerE = easySpawner.GetComponent<EnemySpawner>();
+        SpawnerM = mediumSpawner.GetComponent<EnemySpawner>();
+        SpawnerH = hardSpawner.GetComponent<EnemySpawner>();
     }
 
     // Update is called once per frame
@@ -74,12 +83,15 @@ public class GameDirector : MonoBehaviour
         {
             case Difficulties.HARD:
                 print("Hard mode");
+                HardDifficulty();
                 break;
             case Difficulties.MEDIUM:
                 print("Medium");
+                MediumDifficulty();
                 break;
             case Difficulties.EASY:
                 print("Easy");
+                EasyDifficulty();
                 break;
 
         }
@@ -88,17 +100,36 @@ public class GameDirector : MonoBehaviour
 
     void EasyDifficulty()
     {
-        // Take The lower values and pick a random one
+        // spawnrate of like 3
+        SpawnerE.SetSpawnRate(3);
+        easySpawner.SetActive(true);
+        mediumSpawner.SetActive(false);
+        hardSpawner.SetActive(false);
     }
 
     void MediumDifficulty()
     {
-        // Take The middle(average) values and pick a random one
+        // lower spawn rate for easy
+
+        SpawnerE.SetSpawnRate(5);
+
+        
+
+        easySpawner.SetActive(true);
+        mediumSpawner.SetActive(true);
+        hardSpawner.SetActive(false);
     }
 
     void HardDifficulty()
     {
-        // Take The higher values and pick a random one
+        // Change spawnrates 
+        // lower spawnrates for easy and medium
+        SpawnerE.SetSpawnRate(6);
+        SpawnerM.SetSpawnRate(5);
+        SpawnerH.SetSpawnRate(5);
+        easySpawner.SetActive(true);
+        mediumSpawner.SetActive(true);
+        hardSpawner.SetActive(true);
     }
 
 

@@ -41,12 +41,20 @@ public class EnemyStateMachine : MonoBehaviour
     [SerializeField] private float attackTime = 1.5f;
     private bool isNearPlayer = false;
 
+    public enum EnemyType
+    {
+        EASY,
+        MEDUIM,
+        HARD
+    }
+    public EnemyType enemyType;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
         
-        currentState = new Wander();
         targetGO = GameObject.FindGameObjectWithTag("Player");
         gameDirector = FindObjectOfType<GameDirector>();
 
@@ -56,9 +64,9 @@ public class EnemyStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        CheckEnemyType();
         //Debug.Log(currentState.ToString());
-        
+
 
         currentState.ExceuteLogic(this);
         currentState.ChangeState(this);
@@ -67,6 +75,23 @@ public class EnemyStateMachine : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         isNearPlayer = Physics.CheckSphere(attackSphere.transform.position, playerCheckDistance, playerCheckMask);
         
+    }
+
+    void CheckEnemyType()
+    {
+
+        if (enemyType == EnemyType.EASY)
+        {
+            currentState = new Wander();
+        }
+        if (enemyType == EnemyType.MEDUIM)
+        {
+            currentState = new Wander();
+        }
+        if (enemyType == EnemyType.HARD)
+        {
+            currentState = new Chase();
+        }
     }
 
 
@@ -158,6 +183,7 @@ public class EnemyStateMachine : MonoBehaviour
             StartCoroutine (AttackPlayer());
         }
     }
+
     public bool GetIsWandering()
     {
         return isWandering;
