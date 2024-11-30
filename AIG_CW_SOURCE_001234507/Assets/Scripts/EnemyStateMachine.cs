@@ -47,8 +47,10 @@ public class EnemyStateMachine : MonoBehaviour
     {
         
         currentState = new Wander();
+        targetGO = GameObject.FindGameObjectWithTag("Player");
+        gameDirector = FindObjectOfType<GameDirector>();
 
-       
+
     }
 
     // Update is called once per frame
@@ -56,7 +58,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
        
         //Debug.Log(currentState.ToString());
-        gameDirector = FindObjectOfType<GameDirector>();
+        
 
         currentState.ExceuteLogic(this);
         currentState.ChangeState(this);
@@ -126,7 +128,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         //transform.rotation = Quaternion.Slerp(frontFacing.rotation, Quaternion.LookRotation(playerTransform.position - frontFacing.position), rotationSpeed * Time.deltaTime);
         //transform.position += frontFacing.forward * Time.deltaTime * walkSpeed;
-        targetGO = GameObject.FindGameObjectWithTag("Player");
+        
         var heading = targetGO.transform.position - transform.position;
         var distance = heading.magnitude;
         var direction = heading/distance;

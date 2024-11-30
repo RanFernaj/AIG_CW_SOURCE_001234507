@@ -750,7 +750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6518414912984129394, guid: 7c0b91897d2e54547b7a9be4ef976676, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1006,7 +1006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1117981494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,6 +1020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6518414912984129394, guid: 7c0b91897d2e54547b7a9be4ef976676, type: 3}
+  gameDirector: {fileID: 1804703757}
   spawnRate: 2
 --- !u!4 &1117981495
 Transform:

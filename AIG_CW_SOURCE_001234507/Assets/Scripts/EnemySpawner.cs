@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameDirector gameDirector;
 
     [SerializeField] private float spawnRate;
 
@@ -25,7 +26,10 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnEnemies()
     {
         EnemyStateMachine enemy = enemyPrefab.GetComponent<EnemyStateMachine>();
-        enemy.walkSpeed = Random.Range(5, 10);
+        if (gameDirector.currentDifficulty == 0) 
+        {
+            enemy.walkSpeed = Random.Range(5, 10);
+        }
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(spawnRate);
         StartCoroutine(SpawnEnemies());
